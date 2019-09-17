@@ -41,7 +41,10 @@ for url in df['Url']:
     #driver = webdriver.Firefox()
     
     sp = BeautifulSoup(page, "lxml")
-    access_number.append(sp.find(attrs = {'id':'kototalnum'}).text)
+    #access_number.append(sp.find(attrs = {'id':'kototalnum'}).text)
+    x = sp.find_all('ul', class_='container')
+    value = x[1].find('li').span.text
+    access_number.append(int(value.replace("#","")))
 
 
 df['Acessos'] = access_number
